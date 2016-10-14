@@ -255,6 +255,28 @@ test("performing a task on a destroyed object returns an immediately-canceled ta
   });
 });
 
+test('task property on base class can be overridden by extensor', function(assert) {
+  assert.expect(2);
+
+  let BaseObj = Ember.Object.extend({
+    myTask: task(function * () {
+      assert.ok(false, 'should not get here');
+    }),
+  });
+
+  let SubclassObj = BaseObj.extend({
+    myTask: task(function * () {
+      assert.ok(true);
+    }),
+  });
+
+  let subclassInstance = SubclassObj.create();
+
+  assert.ok(subclassInstance);
+
+  subclassInstance.myTask.perform();
+});
+
 
 
 /*

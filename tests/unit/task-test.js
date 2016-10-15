@@ -270,11 +270,13 @@ test('task property on base class can be overridden by extensor', function(asser
     }),
   });
 
-  let subclassInstance = SubclassObj.create();
+  Ember.run(() => {
+    let subclassInstance = SubclassObj.create();
 
-  assert.ok(subclassInstance);
+    assert.ok(subclassInstance);
 
-  subclassInstance.myTask.perform();
+    subclassInstance.myTask.perform();
+  });
 });
 
 

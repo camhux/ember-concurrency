@@ -420,7 +420,8 @@ objectAssign(TaskProperty.prototype, propertyModifiers, {
     Object.defineProperty(proto, taskName, {
       get() {
         return cp.get(this, taskName);
-      }
+      },
+      set() {/*trap*/},
     });
   },
 
